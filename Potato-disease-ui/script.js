@@ -3,7 +3,6 @@ const fileInput = document.getElementById('fileInput');
 const resultCard = document.getElementById('resultCard');
 const leafImage = document.getElementById('leafImage');
 const label = document.getElementById('label');
-const confidence = document.getElementById('confidence');
 const clearBtn = document.getElementById('clearBtn');
 
 // Click to open file picker
@@ -59,11 +58,9 @@ async function handleFile(file) {
 
       // Display real prediction
       label.textContent = data.class;
-      confidence.textContent = (data.confidence * 100).toFixed(2) + "%";
 
     } catch (error) {
       label.textContent = "Error";
-      confidence.textContent = "Could not get prediction";
       console.error(error);
     }
   };

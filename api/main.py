@@ -21,7 +21,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-MODEL = tf.keras.models.load_model(r"F:\Work\SEM3\DLI\Potato-Disease\potatoes.h5")
+MODEL = tf.keras.models.load_model(r"/home/agam/projects/my_ml_project/Potato-Disease/potatoes.h5")
 CLASS_NAMES = ["Early Blight", "Late Blight", "Healthy"]
 
 
@@ -42,11 +42,8 @@ async def predict(file: UploadFile = File(...)):
 
     predictions = MODEL.predict(image_batch)
     predicted_class = CLASS_NAMES[np.argmax(predictions[0])]
-    confidence = np.max(predictions[0])
-
     return {
-        "class": predicted_class,
-        "confidence": float(confidence)
+        "class": predicted_class
     }
 
 
